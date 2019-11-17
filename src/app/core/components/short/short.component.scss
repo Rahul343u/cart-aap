@@ -1,4 +1,17 @@
 .container-sort {
-  width: 110%;
+  width: 120%;
   margin-top: 5%;
+
+  .sort-by-Tag {
+    font-weight: bold;
+  }
+  .price-high-low,
+  .price-low-high,
+  .discount {
+    cursor: pointer;
+  }
+  .active {
+    font-weight: bold;
+    text-decoration: underline;
+  }
 }

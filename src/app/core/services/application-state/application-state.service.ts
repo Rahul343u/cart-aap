@@ -9,7 +9,10 @@ export class ApplicationStateService {
   addTocartPageData: Array<Item> = [];
   cartPageData: Array<Item> = [];
 
+  orderByKeys = { orderByKey: 'price', orderByOrder: false };
+
   $cartPageDataSub = new Subject<Array<Item>>();
+  $orderBySub = new Subject<{ orderByKey: string; orderByOrder: boolean }>();
 
   constructor() {}
 
@@ -28,5 +31,16 @@ export class ApplicationStateService {
   setCartPageData(data: Array<Item>) {
     this.cartPageData = [...data];
     this.$cartPageDataSub.next(this.cartPageData);
+  }
+
+  getOderByKeys() {
+    return this.orderByKeys;
+  }
+
+  setOrderByKeys(key, order) {
+    this.orderByKeys.orderByKey = key;
+    this.orderByKeys.orderByOrder = order;
+
+    this.$orderBySub.next(this.orderByKeys);
   }
 }

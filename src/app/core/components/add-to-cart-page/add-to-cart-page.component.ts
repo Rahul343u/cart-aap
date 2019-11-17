@@ -14,12 +14,23 @@ export class AddToCartPageComponent implements OnInit, OnDestroy {
   currentItem: string = '';
   timeoutSubscription: any;
   totalItems: number;
+
+  orderByKey = 'price';
+  orderByOrder = false;
   constructor(
     private appState: ApplicationStateService,
     private apiCall: ApiCallService
   ) {}
 
   ngOnInit() {
+    this.orderByKey = this.appState.getOderByKeys().orderByKey;
+    this.orderByOrder = this.appState.getOderByKeys().orderByOrder;
+
+    this.appState.$orderBySub.subscribe(data => {
+      this.orderByKey = data.orderByKey;
+      this.orderByOrder = data.orderByOrder;
+    });
+
     this.addTocartPageData = this.appState.getAddTocartPageData();
     this.cartPageData = this.appState.getCartPageData();
     console.log(this.addTocartPageData);

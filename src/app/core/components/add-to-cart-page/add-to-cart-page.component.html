@@ -2,7 +2,10 @@
   <div class="items-section">
     <div
       class="item-container"
-      *ngFor="let pItem of addTocartPageData; let i = index"
+      *ngFor="
+        let pItem of addTocartPageData | orderBy: orderByKey:orderByOrder;
+        let i = index
+      "
     >
       <div class="img-section">
         <img
